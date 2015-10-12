@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using TaskModel.Configuraion;
 using TaskModel.Model;
 
 namespace TaskModel.DataLoad
@@ -18,13 +20,36 @@ namespace TaskModel.DataLoad
         {
             _mettings = new List<string>();
             _doneStatuses = new List<string>();
-            SpreadsheetInfo.SetLicense("E5M8-KYCM-HFC2-WRTR");
-            _mettings.Add("AL-679");
-            _mettings.Add("AL-711");
 
-            _doneStatuses.Add("Ready for QA");
-            _doneStatuses.Add("Verified by QA");
-            _doneStatuses.Add("Closed");
+            SpreadsheetInfo.SetLicense("E5M8-KYCM-HFC2-WRTR");
+            FillSettings();
+            //_mettings.Add("AL-679");
+            //_mettings.Add("AL-711");
+
+            //_doneStatuses.Add("Verified by QA");
+            //_doneStatuses.Add("Closed");
+        }
+
+        private void FillSettings()
+        {
+            _doneStatuses.Clear();
+            _mettings.Clear();
+            TimeAnalyticConfigurationSection config = ConfigurationManager.GetSection(TimeAnalyticConfigurationSection.SECTION_NAME) as TimeAnalyticConfigurationSection;
+            if (config == null)
+                return;
+            foreach (DoneStatusConfigurationElement configDoneStatus in config.DoneStatuses )
+            {
+                _doneStatuses.Add(configDoneStatus.Status);
+            }
+
+            foreach (TaskConfigurationElement configTask in config.Tasks)
+            {
+                if (configTask.IsMeeting)
+                {
+                    _mettings.Add(configTask.Key);
+                }
+            }
+            
         }
 
         public ObservableCollection<TaskGroup> LoadTimeSheetReport(string fileName, DateTime dateFrom, DateTime dateTo)

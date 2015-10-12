@@ -5,6 +5,8 @@ namespace TaskModel.Configuraion
 {
     public class TimeAnalyticConfigurationSection : ConfigurationSection
     {
+        public const string SECTION_NAME = "TimeAnalytic";
+
         [ConfigurationProperty("Tasks")]
         public TaskCollection Tasks
         {
@@ -12,9 +14,11 @@ namespace TaskModel.Configuraion
         }
 
         [ConfigurationProperty("DoneStatuses")]
-        public TaskCollection DoneStatuses
+        public DoneStatusCollection DoneStatuses
         {
-            get { return base["DoneStatuses"] as TaskCollection; }
+            get { return base["DoneStatuses"] as DoneStatusCollection; }
         }
+
+        
     }
 }
