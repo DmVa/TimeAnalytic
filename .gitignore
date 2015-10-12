@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TaskModel/bin/Debug
+/TimeAnalytic/bin/Debug
+/TaskModel/obj/Release
+/.vs/TimeAnalytic/v14/.suo
