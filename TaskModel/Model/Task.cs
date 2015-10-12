@@ -11,9 +11,12 @@ namespace TaskModel.Model
         private string _keyName;
         private string _url;
         private string _title;
+        private string _status;
         private double _estimation;
         private double _leftOnBeginig;
         private double _timeSpentByDev;
+        private double _underEstimate; //calculated value
+
         private bool _isDone;
         private bool _isTaskRelatesToMettings;
         private bool _isTaskRelatesToDevelopment;
@@ -42,6 +45,11 @@ namespace TaskModel.Model
             get { return _title; }
             set { _title = value; RaisePropertyChanged("Title"); }
         }
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; RaisePropertyChanged("Status"); }
+        }
 
         public double Estimation
         {
@@ -59,6 +67,12 @@ namespace TaskModel.Model
         {
             get { return _timeSpentByDev; }
             set { _timeSpentByDev = value; RaisePropertyChanged("TimeSpentByDev"); }  
+        }
+
+        public double UnderEstimate
+        {
+            get { return _underEstimate; }
+            set { _underEstimate = value; RaisePropertyChanged("UnderEstimate"); }
         }
 
         public bool IsDone
@@ -81,6 +95,16 @@ namespace TaskModel.Model
         {
             get { return _isTaskManagedByDeveloper; }
             set { _isTaskManagedByDeveloper = value; RaisePropertyChanged("IsTaskManagedByDeveloper"); }
+        }
+
+        public void CalcCalulatedValues()
+        {
+            UnderEstimate = TimeSpentByDev - Estimation;
+        }
+
+        public Task ShallowCopy()
+        {
+            return (Task)this.MemberwiseClone();
         }
     }
 }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GemBox.Spreadsheet">
+      <HintPath>..\Lib\GemBox.Spreadsheet.DLL</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
@@ -44,9 +47,12 @@
   <ItemGroup>
     <Compile Include="BaseCommand.cs" />
     <Compile Include="BasePropertyChanged.cs" />
+    <Compile Include="DataLoad\DataLoadManager.cs" />
+    <Compile Include="DataLoad\FileHelper.cs" />
+    <Compile Include="DataLoad\WorkLogDataRow.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="DataLoad\TestHelper.cs" />
     <Compile Include="Model\TaskGroup.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
   </ItemGroup>

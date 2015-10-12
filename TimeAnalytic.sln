@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeAnalytic", "TimeAnalyti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskModel", "TaskModel\TaskModel.csproj", "{FA28903A-E069-4E83-9833-3C2CF58D836C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{FE212444-ED59-43C0-8C27-B34560C09429}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\GemBox.Spreadsheet.DLL = Lib\GemBox.Spreadsheet.DLL
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

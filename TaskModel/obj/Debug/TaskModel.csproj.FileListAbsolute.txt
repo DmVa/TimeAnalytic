@@ -4,3 +4,10 @@ C:\ToolsProjects\TimeAnalytic\TaskModel\bin\Debug\PresentationCore.dll
 C:\ToolsProjects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.csprojResolveAssemblyReference.cache
 C:\ToolsProjects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.dll
 C:\ToolsProjects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.pdb
+D:\Projects\TimeAnalytic\TaskModel\bin\Debug\TaskModel.dll
+D:\Projects\TimeAnalytic\TaskModel\bin\Debug\TaskModel.pdb
+D:\Projects\TimeAnalytic\TaskModel\bin\Debug\PresentationCore.dll
+D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.csprojResolveAssemblyReference.cache
+D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.dll
+D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.pdb
+D:\Projects\TimeAnalytic\TaskModel\bin\Debug\GemBox.Spreadsheet.DLL

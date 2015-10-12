@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using TaskModel.Model;
 
-namespace TaskModel
+namespace TaskModel.DataLoad
 {
     class TestHelper
     {
@@ -32,6 +32,7 @@ namespace TaskModel
         private static Task CreateTestTask()
         {
             Task task = new Task();
+            task.KeyName = "TEST";
             task.Estimation = 10;
             task.IsTaskRelatesToDevelopment = true;
             task.LeftOnBegining = 5;

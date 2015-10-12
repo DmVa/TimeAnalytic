@@ -9,7 +9,9 @@ namespace TaskModel.Model
     public class TaskGroup : BasePropertyChanged
     {
         private string _id;
+        private bool _isSummary;
         private string _title;
+
         private double _estimation;
         private double _totalLeftOnBeginig;
         private double _totalTimeSpentByDev;
@@ -19,6 +21,7 @@ namespace TaskModel.Model
         private double _totalSpentManagedByDeveloper;
         private double _totalSpentNotManagedByDeveloper;
         private double _rateDileveredToDevelopment;
+        private double _totalUnderEstimate;
         private ObservableCollection<Task> _tasks;
 
         public TaskGroup()
@@ -85,13 +88,22 @@ namespace TaskModel.Model
             get { return _totalSpentNotManagedByDeveloper; }
             set { _totalSpentNotManagedByDeveloper = value; RaisePropertyChanged("TotalSpentNotManagedByDeveloper"); }
         }
+        public double TotalUnderEstimate
+        {
+            get { return _totalUnderEstimate; }
+            set { _totalUnderEstimate = value; RaisePropertyChanged("TotalUnderEstimate"); }
+        }
 
         public double RateDileveredToDevelopment
         {
             get { return _rateDileveredToDevelopment; }
             set { _rateDileveredToDevelopment = value; RaisePropertyChanged("RateDileveredToDevelopment"); }
         }
-
+        public bool IsSummary
+        {
+            get { return _isSummary; }
+            set { _isSummary = value; RaisePropertyChanged("IsSummary"); }
+        }
         public  ObservableCollection<Task> Tasks
         {
             get { return _tasks; }
@@ -102,6 +114,7 @@ namespace TaskModel.Model
 
         public void CalculateTotals()
         {
+            CalcItemsTotals();
             ResetTotals();
             _estimation = _tasks.Sum(x => x.Estimation);
             _totalLeftOnBeginig = _tasks.Sum(x => x.LeftOnBegining);
@@ -109,7 +122,7 @@ namespace TaskModel.Model
             _totalDone = _tasks.Where( x => x.IsDone).Sum(x => x.TimeSpentByDev);
             _totalRelatesToMettings = _tasks.Where(x => x.IsTaskRelatesToMettings).Sum(x => x.TimeSpentByDev);
             _totalRelatesToDevelopment =  _tasks.Where(x => x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
-            _totalSpentManagedByDeveloper = _tasks.Where(x => x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev); ;
+            _totalSpentManagedByDeveloper = _tasks.Where(x => x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev); 
             _totalSpentNotManagedByDeveloper = _tasks.Where(x => !x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev);
             if (_totalRelatesToDevelopment > 0)
             {
@@ -121,7 +134,17 @@ namespace TaskModel.Model
                     _totalRelatesToDevelopment = 1;
             }
 
+            _totalUnderEstimate = _tasks.Where(x => x.IsTaskRelatesToDevelopment).Sum(x => x.UnderEstimate); 
+
             RaisePropertyChanged(string.Empty);
+        }
+
+        private void CalcItemsTotals()
+        {
+           foreach (var task in Tasks)
+           {
+               task.CalcCalulatedValues();
+           }
         }
 
         private void ResetTotals()

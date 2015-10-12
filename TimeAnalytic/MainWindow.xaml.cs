@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskModel.DataLoad;
 using TaskModel.ViewModel;
 
 namespace TimeAnalytic
@@ -20,10 +21,37 @@ namespace TimeAnalytic
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _mainViewModel;
+        private string _dataDirectory;
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
+            _dataDirectory = new FileHelper().DataDirectory;
+            _mainViewModel = new MainWindowViewModel();;
+            this.DataContext = _mainViewModel;
         }
+
+        private void ButtonLoad_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.InitialDirectory = _dataDirectory;
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                _mainViewModel.DataFile = filename;
+            }
+        }
+        private void ButtonLoadData_Click(object sender, RoutedEventArgs e)
+        {
+            _mainViewModel.LoadData();
+        }
+
     }
 }
