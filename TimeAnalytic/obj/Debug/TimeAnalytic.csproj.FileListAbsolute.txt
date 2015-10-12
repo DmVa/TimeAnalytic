@@ -29,3 +29,6 @@ D:\Projects\TimeAnalytic\TimeAnalytic\obj\Debug\TimeAnalytic.csprojResolveAssemb
 D:\Projects\TimeAnalytic\TimeAnalytic\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Projects\TimeAnalytic\TimeAnalytic\obj\Debug\TimeAnalytic_MarkupCompile.lref
 D:\Projects\TimeAnalytic\TimeAnalytic\bin\Debug\GemBox.Spreadsheet.dll
+C:\ToolsProjects\TimeAnalytic\TimeAnalytic\bin\Debug\GemBox.Spreadsheet.dll
+C:\ToolsProjects\TimeAnalytic\TimeAnalytic\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\ToolsProjects\TimeAnalytic\TimeAnalytic\obj\Debug\TimeAnalytic_MarkupCompile.lref

@@ -11,3 +11,4 @@ D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.csprojResolveAssemblyRefe
 D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.dll
 D:\Projects\TimeAnalytic\TaskModel\obj\Debug\TaskModel.pdb
 D:\Projects\TimeAnalytic\TaskModel\bin\Debug\GemBox.Spreadsheet.DLL
+C:\ToolsProjects\TimeAnalytic\TaskModel\bin\Debug\GemBox.Spreadsheet.DLL
