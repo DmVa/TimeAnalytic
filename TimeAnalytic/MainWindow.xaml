@@ -111,7 +111,7 @@
                         <GridViewColumn Header="Done(Booked)/Development" util:GridViewSort.PropertyName="RateDoneBookedToBookedDevelopment" Width="Auto">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding RateDoneBookedToBookedDevelopment, StringFormat=N2}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding RateDoneBookedToBookedDevelopment, StringFormat=N2}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
