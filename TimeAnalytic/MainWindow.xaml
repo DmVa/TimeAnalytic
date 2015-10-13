@@ -129,7 +129,8 @@
                 </ListView.View>
             </ListView>
 
-           <ListView Grid.Row="1"  ItemsSource="{Binding  Path=Tasks}" DataContext="{Binding SelectedItem, ElementName=TaskGroup}">
+           <ListView Grid.Row="1"  ItemsSource="{Binding  Path=Tasks}" DataContext="{Binding SelectedItem, ElementName=TaskGroup}"
+                     util:GridViewSort.AutoSort="True">
                <ListView.View>
                    <GridView>
                         <GridViewColumn Header="Key" util:GridViewSort.PropertyName="KeyName" Width="80">

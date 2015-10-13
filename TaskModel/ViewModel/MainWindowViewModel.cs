@@ -62,8 +62,8 @@ namespace TaskModel.ViewModel
             if (!string.IsNullOrEmpty(_dataFile))
                 LoadData();
 
-            if (_tasksGroups == null)
-                _tasksGroups = TestHelper.CreateTestData();
+            //if (_tasksGroups == null)
+            //    _tasksGroups = TestHelper.CreateTestData();
         }
 
     }
