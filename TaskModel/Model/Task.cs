@@ -99,7 +99,14 @@ namespace TaskModel.Model
 
         public void CalcCalulatedValues()
         {
-            UnderEstimate = TimeSpentByDev - Estimation;
+            if (IsDone)
+            {
+                UnderEstimate = TimeSpentByDev - Estimation;
+            }
+            else
+            {
+                UnderEstimate = 0;
+            }
         }
 
         public Task ShallowCopy()

@@ -4,7 +4,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:util="clr-namespace:TimeAnalytic.Util"
         Title="Time Analytic" 
-        Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Height="700" Width="1400" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -28,7 +28,7 @@
                 <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding  Path=DateTo, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"   Width="100" />
             </Grid>
             
-            <Button x:Name="buttonLoadData" Content="Load Data" Margin="5" Height="30"  Click="ButtonLoadData_Click" />
+            <Button x:Name="buttonLoadData" Content="Calc Data" Margin="5"  Height="30"  Click="ButtonLoadData_Click" />
             
         </StackPanel>
         <Grid Grid.Column="1">
@@ -42,7 +42,7 @@
                 <ListView.View>
                     <GridView>
 
-                        <GridViewColumn Header="Title" util:GridViewSort.PropertyName="Title" Width="120">
+                        <GridViewColumn Header="Title" util:GridViewSort.PropertyName="Title" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Title}"/>
@@ -50,84 +50,76 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Estimation" util:GridViewSort.PropertyName="Estimation">
+                        <GridViewColumn Header="Total Estimation" util:GridViewSort.PropertyName="TotalEstimationDevelopment" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Estimation, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalEstimationDevelopment, StringFormat=N1}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Done" util:GridViewSort.PropertyName="TotalDone">
+                        <GridViewColumn Header="Total Done (Estimation)" util:GridViewSort.PropertyName="TotalDoneEstimationDevelopment" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalDone, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalDoneEstimationDevelopment, StringFormat=N1}" FontWeight="Bold"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Development" util:GridViewSort.PropertyName="TotalRelatesToDevelopment">
+                        <GridViewColumn Header="Total Done (Booked)" util:GridViewSort.PropertyName="TotalDoneBookedDevelopment" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalRelatesToDevelopment, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalDoneBookedDevelopment, StringFormat=N1}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-
-                        <GridViewColumn Header="Rate Dilevered/Development" util:GridViewSort.PropertyName="RateDileveredToDevelopment">
+                        <GridViewColumn Header="Total Booked" util:GridViewSort.PropertyName="TotalTimeBooked" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding RateDileveredToDevelopment, StringFormat=N2}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding TotalTimeBooked, StringFormat=N1}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="On Beginig" util:GridViewSort.PropertyName="TotalLeftOnBeginig">
+                        <GridViewColumn Header="Total Development" util:GridViewSort.PropertyName="TotalBookedDevelopment" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalLeftOnBeginig, StringFormat=N1}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="Total Booked" util:GridViewSort.PropertyName="TotalTimeSpentByDev">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding TotalTimeSpentByDev, StringFormat=N1}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="Total Mettings" util:GridViewSort.PropertyName="TotalRelatesToMettings">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding TotalRelatesToMettings, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalBookedDevelopment, StringFormat=N1}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
 
-                        <GridViewColumn Header="Total own tasks" util:GridViewSort.PropertyName="TotalSpentManagedByDeveloper">
+                        <GridViewColumn Header="Total Mettings" util:GridViewSort.PropertyName="TotalBookedMettings" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalSpentManagedByDeveloper, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalBookedMettings, StringFormat=N1}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Total not own tasks" util:GridViewSort.PropertyName="TotalSpentNotManagedByDeveloper">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding TotalSpentNotManagedByDeveloper, StringFormat=N1}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
 
-                        <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="TotalUnderEstimate" Width="60">
+                        <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="TotalUnderEstimate" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding TotalUnderEstimate, StringFormat=N1}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Done(Booked)/Development" util:GridViewSort.PropertyName="RateDoneBookedToBookedDevelopment" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RateDoneBookedToBookedDevelopment, StringFormat=N2}" FontWeight="Bold" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Done(Esitamtion)/Development" util:GridViewSort.PropertyName="RateDoneEstimationToDevelopment" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RateDoneEstimationToDevelopment, StringFormat=N2}" FontWeight="Bold" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -140,23 +132,15 @@
            <ListView Grid.Row="1"  ItemsSource="{Binding  Path=Tasks}" DataContext="{Binding SelectedItem, ElementName=TaskGroup}">
                <ListView.View>
                    <GridView>
-                        <GridViewColumn Header="KeyName" util:GridViewSort.PropertyName="KeyName" Width="60">
+                        <GridViewColumn Header="Key" util:GridViewSort.PropertyName="KeyName" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding KeyName}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                       
-                        <GridViewColumn Header="Url" util:GridViewSort.PropertyName="Url" Width="60">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Url}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="Title" util:GridViewSort.PropertyName="Title" Width="120">
+                   
+                        <GridViewColumn Header="Title" util:GridViewSort.PropertyName="Title" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Title}"/>
@@ -164,7 +148,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Estimation" util:GridViewSort.PropertyName="Estimation" Width="60">
+                        <GridViewColumn Header="Estimation" util:GridViewSort.PropertyName="Estimation" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Estimation, StringFormat=N1}"/>
@@ -172,7 +156,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Time Spent" util:GridViewSort.PropertyName="TimeSpentByDev" Width="60">
+                        <GridViewColumn Header="Time Spent" util:GridViewSort.PropertyName="TimeSpentByDev" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding TimeSpentByDev, StringFormat=N1}"/>
@@ -180,47 +164,32 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Left On Begining" util:GridViewSort.PropertyName="LeftOnBegining" Width="60">
+                        <GridViewColumn Header="Is Done" util:GridViewSort.PropertyName="IsDone" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding LeftOnBegining, StringFormat=N1}"/>
+                                    <CheckBox IsChecked="{Binding IsDone}" IsEnabled="False" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Is Done" util:GridViewSort.PropertyName="IsDone" Width="60">
+                        <GridViewColumn Header="Is Meeting" util:GridViewSort.PropertyName="IsTaskRelatesToMettings" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsDone}"/>
+                                    <CheckBox IsChecked="{Binding IsTaskRelatesToMettings}"  IsEnabled="False" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Is Meeting" util:GridViewSort.PropertyName="IsTaskRelatesToMettings" Width="60">
+                        <GridViewColumn Header="Is Development" util:GridViewSort.PropertyName="IsTaskRelatesToDevelopment" Width="90">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsTaskRelatesToMettings}"/>
+                                    <CheckBox IsChecked="{Binding IsTaskRelatesToDevelopment}" IsEnabled="False" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Is Development" util:GridViewSort.PropertyName="IsTaskRelatesToDevelopment" Width="60">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsTaskRelatesToDevelopment}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
 
-                        <GridViewColumn Header="Is own by Dev" util:GridViewSort.PropertyName="IsTaskManagedByDeveloper" Width="60">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsTaskManagedByDeveloper}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Header="Status" util:GridViewSort.PropertyName="Status" Width="60">
+                        <GridViewColumn Header="Status" util:GridViewSort.PropertyName="Status" Width="Auto">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Status}"/>
@@ -228,10 +197,18 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="UnderEstimate" Width="60">
+                        <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="UnderEstimate" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding UnderEstimate, StringFormat=N1}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Url" util:GridViewSort.PropertyName="Url" Width="180">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Url}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

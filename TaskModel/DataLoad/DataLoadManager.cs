@@ -23,11 +23,6 @@ namespace TaskModel.DataLoad
 
             SpreadsheetInfo.SetLicense("E5M8-KYCM-HFC2-WRTR");
             FillSettings();
-            //_mettings.Add("AL-679");
-            //_mettings.Add("AL-711");
-
-            //_doneStatuses.Add("Verified by QA");
-            //_doneStatuses.Add("Closed");
         }
 
         private void FillSettings()
@@ -108,8 +103,6 @@ namespace TaskModel.DataLoad
 
         private void AddDataToTask(Task existingTask, Task extraData)
         {
-            existingTask.Estimation += extraData.Estimation;
-            existingTask.LeftOnBegining += extraData.LeftOnBegining;
             existingTask.TimeSpentByDev += extraData.TimeSpentByDev;
         }
 
