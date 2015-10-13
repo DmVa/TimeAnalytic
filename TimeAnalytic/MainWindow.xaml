@@ -53,7 +53,7 @@
                         <GridViewColumn Header="Total Estimation" util:GridViewSort.PropertyName="TotalEstimationDevelopment" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalEstimationDevelopment, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalEstimationDevelopment, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -61,7 +61,7 @@
                         <GridViewColumn Header="Total Done (Estimation)" util:GridViewSort.PropertyName="TotalDoneEstimationDevelopment" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalDoneEstimationDevelopment, StringFormat=N1}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding TotalDoneEstimationDevelopment, StringFormat=N2}" FontWeight="Bold"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -69,7 +69,7 @@
                         <GridViewColumn Header="Total Done (Booked)" util:GridViewSort.PropertyName="TotalDoneBookedDevelopment" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalDoneBookedDevelopment, StringFormat=N1}" />
+                                    <TextBlock Text="{Binding TotalDoneBookedDevelopment, StringFormat=N2}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -77,7 +77,7 @@
                         <GridViewColumn Header="Total Booked" util:GridViewSort.PropertyName="TotalTimeBooked" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalTimeBooked, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalTimeBooked, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -85,16 +85,16 @@
                         <GridViewColumn Header="Total Development" util:GridViewSort.PropertyName="TotalBookedDevelopment" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalBookedDevelopment, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalBookedDevelopment, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
 
-                        <GridViewColumn Header="Total Mettings" util:GridViewSort.PropertyName="TotalBookedMettings" Width="100">
+                        <GridViewColumn Header="Total Meetings" util:GridViewSort.PropertyName="TotalBookedMeetings" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalBookedMettings, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalBookedMeetings, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -103,7 +103,7 @@
                         <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="TotalUnderEstimate" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalUnderEstimate, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TotalUnderEstimate, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -152,7 +152,7 @@
                         <GridViewColumn Header="Estimation" util:GridViewSort.PropertyName="Estimation" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Estimation, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding Estimation, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -160,7 +160,7 @@
                         <GridViewColumn Header="Time Spent" util:GridViewSort.PropertyName="TimeSpentByDev" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TimeSpentByDev, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding TimeSpentByDev, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -201,12 +201,12 @@
                         <GridViewColumn Header="Under Estimate" util:GridViewSort.PropertyName="UnderEstimate" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding UnderEstimate, StringFormat=N1}"/>
+                                    <TextBlock Text="{Binding UnderEstimate, StringFormat=N2}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Url" util:GridViewSort.PropertyName="Url" Width="180">
+                        <GridViewColumn Header="Url" util:GridViewSort.PropertyName="Url" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Url}"/>

@@ -18,7 +18,7 @@ namespace TaskModel.Model
         private double _totalDoneBookedDevelopment;
         private double _totalDoneEstimationDevelopment;
 
-        private double _totalBookedMettings;
+        private double _totalBookedMeetings;
         private double _totalBookedDevelopment;
 
         private double _totalSpentManagedByDeveloper; // not used
@@ -77,10 +77,10 @@ namespace TaskModel.Model
             set { _totalDoneEstimationDevelopment = value; RaisePropertyChanged("TotalDoneEstimationDevelopment"); }
         }
 
-        public double TotalBookedMettings
+        public double TotalBookedMeetings
         {
-            get { return _totalBookedMettings; }
-            set { _totalBookedMettings = value; RaisePropertyChanged("TotalBookedMettings"); }
+            get { return _totalBookedMeetings; }
+            set { _totalBookedMeetings = value; RaisePropertyChanged("TotalBookedMeetings"); }
         }
         public double TotalBookedDevelopment
         {
@@ -143,7 +143,7 @@ namespace TaskModel.Model
             _totalDoneBookedDevelopment = _tasks.Where( x => x.IsDone && x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
             _totalDoneEstimationDevelopment = _tasks.Where( x => x.IsDone && x.IsTaskRelatesToDevelopment).Sum(x => x.Estimation);
 
-            _totalBookedMettings = _tasks.Where(x => x.IsTaskRelatesToMettings).Sum(x => x.TimeSpentByDev);
+            _totalBookedMeetings = _tasks.Where(x => x.IsTaskRelatesToMettings).Sum(x => x.TimeSpentByDev);
             _totalBookedDevelopment =  _tasks.Where(x => x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
             
             //_totalSpentManagedByDeveloper = _tasks.Where(x => x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev); //not used
@@ -192,7 +192,7 @@ namespace TaskModel.Model
               _totalTimeBooked = 0;
               _totalDoneBookedDevelopment = 0;
               _totalDoneEstimationDevelopment = 0;
-              _totalBookedMettings = 0;
+              _totalBookedMeetings = 0;
               _totalBookedDevelopment = 0;
               _totalSpentManagedByDeveloper = 0; //not used
               _totalSpentNotManagedByDeveloper = 0; //not used
