@@ -17,11 +17,16 @@ namespace TaskModel.DataLoad
 
         private void SetDataDirectory()
         {
-            string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string exePath = Path.GetDirectoryName(location);
-            DataDirectory = Path.Combine(exePath, "Data");
+            //string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //string exePath = Path.GetDirectoryName(location);
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string applicationPath = Path.Combine(basePath, "TimeAnalytic");
+            if (!Directory.Exists(applicationPath))
+                Directory.CreateDirectory(applicationPath);
+
+            DataDirectory = Path.Combine(applicationPath, "Data");
             if (!Directory.Exists(DataDirectory))
-                DataDirectory = exePath;
+                Directory.CreateDirectory(DataDirectory);
         }
         public string GetLastModifiedFile()
         {
