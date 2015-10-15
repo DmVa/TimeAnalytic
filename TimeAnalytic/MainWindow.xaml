@@ -28,7 +28,8 @@
                 <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding  Path=DateTo, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"   Width="100" />
             </Grid>
             
-            <Button x:Name="buttonLoadData" Content="Calc Data" Margin="5"  Height="30"  Click="ButtonLoadData_Click" />
+            <Button x:Name="buttonLoadData" Content="Calc Data" FontWeight="Bold" Margin="5"  Height="30"  Click="ButtonLoadData_Click" />
+            <Button x:Name="buttonExportData" Content="Export Data" Margin="5"  Height="30"  Click="ButtonExport_Click" />
             
         </StackPanel>
         <Grid Grid.Column="1">

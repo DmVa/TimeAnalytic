@@ -22,12 +22,13 @@ namespace TimeAnalytic
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _mainViewModel;
-        private string _dataDirectory;
+        private FileHelper _fileHelper;
+
         public MainWindow()
         {
+            _mainViewModel = new MainWindowViewModel();
             InitializeComponent();
-            _dataDirectory = new FileHelper().DataDirectory;
-            _mainViewModel = new MainWindowViewModel();;
+            _fileHelper = new FileHelper();
             this.DataContext = _mainViewModel;
         }
 
@@ -35,7 +36,7 @@ namespace TimeAnalytic
         {
             // Create OpenFileDialog 
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.InitialDirectory = _dataDirectory;
+            dlg.InitialDirectory = _fileHelper.LoadDataDirectory;
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
 
@@ -53,5 +54,21 @@ namespace TimeAnalytic
             _mainViewModel.LoadData();
         }
 
+        private void ButtonExport_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.InitialDirectory = _fileHelper.ExportDataDirectory;
+            dlg.Filter = "Excel (*.xlsx)|*.xlsx;|All files (*.*)|*.*";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string errorToShow = _mainViewModel.ExportData(dlg.FileName);
+                if (!string.IsNullOrEmpty(errorToShow))
+                {
+                    MessageBox.Show(errorToShow, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+        }
+        
     }
 }

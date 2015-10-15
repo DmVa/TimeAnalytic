@@ -16,6 +16,7 @@ namespace TaskModel.DataLoad
     {
         private List<string> _mettings;
         private List<string> _doneStatuses;
+        private TimeAnalyticConfigurationSection _config;
         public DataLoadManager()
         {
             _mettings = new List<string>();
@@ -29,15 +30,15 @@ namespace TaskModel.DataLoad
         {
             _doneStatuses.Clear();
             _mettings.Clear();
-            TimeAnalyticConfigurationSection config = ConfigurationManager.GetSection(TimeAnalyticConfigurationSection.SECTION_NAME) as TimeAnalyticConfigurationSection;
-            if (config == null)
+            _config = ConfigurationManager.GetSection(TimeAnalyticConfigurationSection.SECTION_NAME) as TimeAnalyticConfigurationSection;
+            if (_config == null)
                 return;
-            foreach (DoneStatusConfigurationElement configDoneStatus in config.DoneStatuses )
+            foreach (DoneStatusConfigurationElement configDoneStatus in _config.DoneStatuses )
             {
                 _doneStatuses.Add(configDoneStatus.Status);
             }
 
-            foreach (TaskConfigurationElement configTask in config.Tasks)
+            foreach (TaskConfigurationElement configTask in _config.Tasks)
             {
                 if (configTask.IsMeeting)
                 {
@@ -111,7 +112,7 @@ namespace TaskModel.DataLoad
             Task task = new Task();
             task.Key = row.IssueKey;
             task.KeyName = row.IssueKey;
-            task.Url = "https://preciseq.atlassian.net/browse/" + task.Key;
+            task.Url = _config.UrlPrefixToKey + task.Key;
             task.Status = row.IssueStatus;
             task.Title = row.IssueSummary;
             task.Estimation = GetDouble(row.IssueOriginalEstimate);

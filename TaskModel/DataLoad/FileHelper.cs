@@ -8,7 +8,8 @@ namespace TaskModel.DataLoad
 {
     public class FileHelper
     {
-        public string DataDirectory { get; private set; }
+        public string LoadDataDirectory { get; private set; }
+        public string ExportDataDirectory { get; private set; }
         public FileHelper ()
         {
             SetDataDirectory();
@@ -19,21 +20,25 @@ namespace TaskModel.DataLoad
         {
             //string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
             //string exePath = Path.GetDirectoryName(location);
-            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string applicationPath = Path.Combine(basePath, "TimeAnalytic");
             if (!Directory.Exists(applicationPath))
                 Directory.CreateDirectory(applicationPath);
 
-            DataDirectory = Path.Combine(applicationPath, "Data");
-            if (!Directory.Exists(DataDirectory))
-                Directory.CreateDirectory(DataDirectory);
+            LoadDataDirectory = Path.Combine(applicationPath, "Data");
+            if (!Directory.Exists(LoadDataDirectory))
+                Directory.CreateDirectory(LoadDataDirectory);
+            ExportDataDirectory = Path.Combine(applicationPath, "Export");
+            if (!Directory.Exists(ExportDataDirectory))
+                Directory.CreateDirectory(ExportDataDirectory);
         }
+
         public string GetLastModifiedFile()
         {
-            DirectoryInfo dir = new DirectoryInfo(DataDirectory);
+            DirectoryInfo dir = new DirectoryInfo(LoadDataDirectory);
             if (!dir.Exists)
                 return string.Empty;
-            var allowedExtensions = new[] { "xslx", "xls" };
+            var allowedExtensions = new[] { "xlsx", "xls" };
             FileInfo[] files = dir
            .GetFiles()
            .Where(file => allowedExtensions.Any(file.Name.ToLower().EndsWith))

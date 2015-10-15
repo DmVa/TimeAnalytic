@@ -66,5 +66,21 @@ namespace TaskModel.ViewModel
             //    _tasksGroups = TestHelper.CreateTestData();
         }
 
+
+        public string ExportData(string fileName)
+        {
+            string error = null;
+            try
+            {
+                DataExport export = new DataExport();
+                export.Export(fileName, DateFrom, DateTo, TasksGroups);
+            }
+            catch(Exception ex)
+            {
+                error = ex.Message;
+            }
+            return error;
+            
+        }
     }
 }

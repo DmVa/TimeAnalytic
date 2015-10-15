@@ -19,6 +19,12 @@ namespace TaskModel.Configuraion
             get { return base["DoneStatuses"] as DoneStatusCollection; }
         }
 
+        [ConfigurationProperty("UrlPrefixToKey")]
+        public string UrlPrefixToKey
+        {
+            get { return base["UrlPrefixToKey"] as string; }
+        }
+
         
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Configuraion\TaskCollection.cs" />
     <Compile Include="Configuraion\TaskConfigurationElement.cs" />
     <Compile Include="Configuraion\TimeAnalyticConfigurationSection.cs" />
+    <Compile Include="DataLoad\DataExport.cs" />
     <Compile Include="DataLoad\DataLoadManager.cs" />
     <Compile Include="DataLoad\FileHelper.cs" />
     <Compile Include="DataLoad\WorkLogDataRow.cs" />
