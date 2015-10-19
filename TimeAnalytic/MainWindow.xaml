@@ -117,15 +117,6 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Header="Done(Esitamtion)/Development" util:GridViewSort.PropertyName="RateDoneEstimationToDevelopment" Width="Auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RateDoneEstimationToDevelopment, StringFormat=N2}" FontWeight="Bold" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-
                     </GridView>
                 </ListView.View>
             </ListView>

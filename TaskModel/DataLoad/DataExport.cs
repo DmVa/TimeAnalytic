@@ -95,7 +95,6 @@ namespace TaskModel.DataLoad
             ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedMeetings].Value = "Total Meetings";
             ws.Cells[row, (int)TaskGroupDataPosition.TotalUnderEstimate].Value = "Under Estimate";
             ws.Cells[row, (int)TaskGroupDataPosition.RateDoneBookedToBookedDevelopment].Value = "Done(Booked)/Development";
-            ws.Cells[row, (int)TaskGroupDataPosition.RateDoneEstimationToDevelopment].Value = "Done(Esitamtion)/Development";
         }
 
         private void WriteGroupData(ExcelWorksheet ws, TaskGroup group, int row)
@@ -109,7 +108,6 @@ namespace TaskModel.DataLoad
             ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedMeetings].Value = DoubleToString(group.TotalBookedMeetings);
             ws.Cells[row, (int)TaskGroupDataPosition.TotalUnderEstimate].Value = DoubleToString(group.TotalUnderEstimate);
             ws.Cells[row, (int)TaskGroupDataPosition.RateDoneBookedToBookedDevelopment].Value = DoubleToString(group.RateDoneBookedToBookedDevelopment);
-            ws.Cells[row, (int)TaskGroupDataPosition.RateDoneEstimationToDevelopment].Value = DoubleToString(group.RateDoneEstimationToDevelopment);
         }
 
 
@@ -196,7 +194,6 @@ namespace TaskModel.DataLoad
         TotalBookedDevelopment,
         TotalBookedMeetings,
         TotalUnderEstimate,
-        RateDoneBookedToBookedDevelopment,
-        RateDoneEstimationToDevelopment
+        RateDoneBookedToBookedDevelopment
     }
 }
