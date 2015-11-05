@@ -60,7 +60,15 @@ namespace TaskModel.ViewModel
         private void InitTasksGroups()
         {
             if (!string.IsNullOrEmpty(_dataFile))
-                LoadData();
+            {
+                try
+                {
+                    LoadData();
+                }
+                catch { }
+                //ignores
+
+            }
 
             //if (_tasksGroups == null)
             //    _tasksGroups = TestHelper.CreateTestData();
