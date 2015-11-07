@@ -27,10 +27,32 @@
                 <Label  Content="To" Grid.Row="1" />
                 <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding  Path=DateTo, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"   Width="100" />
             </Grid>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+               </Grid.ColumnDefinitions>
+                <Label  Content="Select Setting:" />
+                <ComboBox Name="ComboSettings" Grid.Row="1" Margin="5" SelectionChanged="ComboSettings_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
             
+
             <Button x:Name="buttonLoadData" Content="Calc Data" FontWeight="Bold" Margin="5"  Height="30"  Click="ButtonLoadData_Click" />
             <Button x:Name="buttonExportData" Content="Export Data" Margin="5"  Height="30"  Click="ButtonExport_Click" />
             
+            <Button x:Name="buttonManageSettings" Content="Settings" Margin="5"  Height="30"  Click="ButtonManageSettings_Click" />
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

@@ -35,7 +35,6 @@ namespace TaskModel.DataLoad
             task.KeyName = "TEST";
             task.Estimation = 10;
             task.IsTaskRelatesToDevelopment = true;
-            task.LeftOnBegining = 5;
             task.Url = "https://preciseq.atlassian.net/browse/AL-768";
 
             return task;

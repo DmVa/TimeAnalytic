@@ -5,12 +5,18 @@ using System.Linq;
 using System.Text;
 using TaskModel.DataLoad;
 using TaskModel.Model;
+using TaskModel.Settings;
 
 namespace TaskModel.ViewModel
 {
     public class MainWindowViewModel : BasePropertyChanged
     {
+        private ApplicationSettings _applicationSettings;
+
         private ObservableCollection<TaskGroup> _tasksGroups;
+        private ObservableCollection<ModelSettings> _configurations;
+        private ModelSettings _activeConfiguration;
+
         private DateTime _dateFrom;
         private DateTime _dateTo;
         private string _dataFile;
@@ -19,14 +25,17 @@ namespace TaskModel.ViewModel
 
         public MainWindowViewModel()
         {
+            _applicationSettings = new ApplicationSettings();
+            _configurations = new ObservableCollection<ModelSettings>();
             _fileHelper = new FileHelper();
             _dataLoader = new DataLoadManager();
             _dataFile = _fileHelper.GetLastModifiedFile();
+
             _dateTo = DateTime.Now.Date;
             _dateFrom = _dateTo.AddDays(-7);
             InitTasksGroups();
-        
         }
+
 #region "Public properties"
         public ObservableCollection<TaskGroup> TasksGroups
         {
@@ -34,20 +43,35 @@ namespace TaskModel.ViewModel
             set { _tasksGroups = value; RaisePropertyChanged("TasksGroups"); }
         }
 
+        public ModelSettings ActiveConfigutaion 
+        {
+            get { return _activeConfiguration; }
+            set { _activeConfiguration = value; RaisePropertyChanged("ActiveConfigutaion"); }
+        }
+
+
+        public ObservableCollection<ModelSettings> Cofigurations
+        {
+            get { return _configurations; }
+            set { _configurations = value; RaisePropertyChanged("Cofigurations"); }
+        }
+
         public string DataFile
         {
-            get { return _dataFile; }
-            set { _dataFile = value; RaisePropertyChanged("DataFile"); }
+            get { return _applicationSettings.DataFile; }
+            set { _applicationSettings.DataFile = value; RaisePropertyChanged("DataFile"); }
         }
+
         public DateTime DateFrom
         {
-            get { return _dateFrom; }
-            set { _dateFrom = value; RaisePropertyChanged("DateFrom"); }
+            get { return _applicationSettings.DateFrom; }
+            set { _applicationSettings.DateFrom = value; RaisePropertyChanged("DateFrom"); }
         }
+
         public DateTime DateTo
         {
-            get { return _dateTo; }
-            set { _dateTo = value; RaisePropertyChanged("DateTo"); }
+            get { return _applicationSettings.DateTo; }
+            set { _applicationSettings.DateTo = value; RaisePropertyChanged("DateTo"); }
         }
 
 #endregion

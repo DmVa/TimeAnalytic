@@ -13,6 +13,7 @@ namespace TaskModel.Configuraion
             get { return base["Tasks"] as TaskCollection; }
         }
 
+
         [ConfigurationProperty("DoneStatuses")]
         public DoneStatusCollection DoneStatuses
         {

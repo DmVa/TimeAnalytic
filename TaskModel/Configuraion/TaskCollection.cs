@@ -6,12 +6,12 @@ using System.Text;
 
 namespace TaskModel.Configuraion
 {
-    [ConfigurationCollection(typeof(TaskConfigurationElement), AddItemName = "add", CollectionType = ConfigurationElementCollectionType.BasicMap)]
+    [ConfigurationCollection(typeof(SpecialTaskConfigurationElement), AddItemName = "add", CollectionType = ConfigurationElementCollectionType.BasicMap)]
     public class TaskCollection : ConfigurationElementCollection
     {
-        public TaskConfigurationElement this[int index]
+        public SpecialTaskConfigurationElement this[int index]
         {
-            get { return (TaskConfigurationElement)BaseGet(index); }
+            get { return (SpecialTaskConfigurationElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -22,7 +22,7 @@ namespace TaskModel.Configuraion
             }
         }
 
-        public void Add(TaskConfigurationElement serviceConfig)
+        public void Add(SpecialTaskConfigurationElement serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -34,15 +34,15 @@ namespace TaskModel.Configuraion
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new TaskConfigurationElement();
+            return new SpecialTaskConfigurationElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((TaskConfigurationElement)element).Key;
+            return ((SpecialTaskConfigurationElement)element).Key;
         }
 
-        public void Remove(TaskConfigurationElement serviceConfig)
+        public void Remove(SpecialTaskConfigurationElement serviceConfig)
         {
             BaseRemove(serviceConfig.Key);
         }

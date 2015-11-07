@@ -51,7 +51,7 @@
     <Compile Include="Configuraion\DoneStatusCollection.cs" />
     <Compile Include="Configuraion\DoneStatusConfigurationElement.cs" />
     <Compile Include="Configuraion\TaskCollection.cs" />
-    <Compile Include="Configuraion\TaskConfigurationElement.cs" />
+    <Compile Include="Configuraion\SpecialTaskConfigurationElement.cs" />
     <Compile Include="Configuraion\TimeAnalyticConfigurationSection.cs" />
     <Compile Include="DataLoad\DataExport.cs" />
     <Compile Include="DataLoad\DataLoadManager.cs" />
@@ -61,6 +61,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataLoad\TestHelper.cs" />
     <Compile Include="Model\TaskGroup.cs" />
+    <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\Fields\AssigneeField.cs" />
+    <Compile Include="Settings\Fields\BaseField.cs" />
+    <Compile Include="Settings\Fields\EstimationField.cs" />
+    <Compile Include="Settings\Fields\UrlField.cs" />
+    <Compile Include="Settings\Fields\WorkDateField.cs" />
+    <Compile Include="Settings\ModelSettings.cs" />
+    <Compile Include="Settings\SettingsFactory.cs" />
+    <Compile Include="Settings\SourceFileSettings.cs" />
+    <Compile Include="Settings\SpecialTask.cs" />
+    <Compile Include="Settings\ValueMapping.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

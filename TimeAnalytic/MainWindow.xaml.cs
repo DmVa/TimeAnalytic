@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskModel.DataLoad;
+using TaskModel.Settings;
 using TaskModel.ViewModel;
 
 namespace TimeAnalytic
@@ -69,6 +70,24 @@ namespace TimeAnalytic
                 }
             }
         }
-        
+
+        private void ButtonManageSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsListWindow settingsListWindow = new SettingsListWindow();
+            settingsListWindow.DataContext = _mainViewModel.Cofigurations;
+            settingsListWindow.Owner = this;
+            settingsListWindow.ShowDialog();
+            
+            if (!_mainViewModel.Cofigurations.Contains(_mainViewModel.ActiveConfigutaion))
+            {
+                _mainViewModel.ActiveConfigutaion = null;
+            }
+        }
+
+        private void ComboSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ModelSettings selected = ComboSettings.SelectedItem as ModelSettings;
+            _mainViewModel.ActiveConfigutaion = selected;
+        }
     }
 }

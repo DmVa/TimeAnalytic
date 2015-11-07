@@ -15,10 +15,7 @@ namespace TaskModel.DataLoad
         public string UserFullName;
         public string IssueStatus;
         public string IssueOriginalEstimate;
-        public string IssueRemainingEstimate;
-
+        public string Url;
         public DateTime BookDate;
-      
-
     }
 }

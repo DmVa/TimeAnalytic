@@ -13,7 +13,6 @@ namespace TaskModel.Model
         private string _title;
         private string _status;
         private double _estimation;
-        private double _leftOnBeginig;
         private double _timeSpentByDev;
         private double _underEstimate; //calculated value
 
@@ -57,11 +56,6 @@ namespace TaskModel.Model
             set { _estimation = value; RaisePropertyChanged("Estimation"); } 
         }
 
-        public double LeftOnBegining
-        {
-            get { return _leftOnBeginig; }
-            set { _leftOnBeginig = value; RaisePropertyChanged("LeftOnBegining"); }  
-        }
 
         public double TimeSpentByDev
         {

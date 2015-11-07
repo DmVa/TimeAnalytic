@@ -38,12 +38,12 @@ namespace TaskModel.DataLoad
                 _doneStatuses.Add(configDoneStatus.Status);
             }
 
-            foreach (TaskConfigurationElement configTask in _config.Tasks)
+            foreach (SpecialTaskConfigurationElement configTask in _config.Tasks)
             {
-                if (configTask.IsMeeting)
-                {
-                    _mettings.Add(configTask.Key);
-                }
+               // if (configTask.IsMeeting)
+               // {
+                 //   _mettings.Add(configTask.Key);
+               // }
             }
             
         }
@@ -116,7 +116,6 @@ namespace TaskModel.DataLoad
             task.Status = row.IssueStatus;
             task.Title = row.IssueSummary;
             task.Estimation = GetDouble(row.IssueOriginalEstimate);
-            task.LeftOnBegining = 0;
             task.TimeSpentByDev = GetDouble(row.Hours);
             task.IsDone = GetIsDone(row.IssueStatus);
             task.IsTaskRelatesToMettings = GetIsMeeting(row.IssueKey);
@@ -198,7 +197,6 @@ namespace TaskModel.DataLoad
             row.UserFullName = GetStringValue(cells, 5);
             row.IssueStatus = GetStringValue(cells, 14);
             row.IssueOriginalEstimate = GetStringValue(cells, 22);
-            row.IssueRemainingEstimate = GetStringValue(cells, 23);
 
             if (!string.IsNullOrEmpty(row.WorkDateStr))
             {
