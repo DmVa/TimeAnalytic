@@ -7,7 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TaskModel.Configuraion;
+
 using TaskModel.Model;
 using TaskModel.Settings;
 
@@ -15,39 +15,11 @@ namespace TaskModel.DataLoad
 {
     public class DataLoadManager
     {
-        private List<string> _mettings;
-        private List<string> _doneStatuses;
-        private TimeAnalyticConfigurationSection _config;
         public DataLoadManager()
         {
-            _mettings = new List<string>();
-            _doneStatuses = new List<string>();
-
             SpreadsheetInfo.SetLicense("E5M8-KYCM-HFC2-WRTR");
-            FillSettings();
         }
-
-        private void FillSettings()
-        {
-            _doneStatuses.Clear();
-            _mettings.Clear();
-            _config = ConfigurationManager.GetSection(TimeAnalyticConfigurationSection.SECTION_NAME) as TimeAnalyticConfigurationSection;
-            if (_config == null)
-                return;
-            foreach (DoneStatusConfigurationElement configDoneStatus in _config.DoneStatuses )
-            {
-                _doneStatuses.Add(configDoneStatus.Status);
-            }
-
-            foreach (SpecialTaskConfigurationElement configTask in _config.Tasks)
-            {
-               // if (configTask.IsMeeting)
-               // {
-                 //   _mettings.Add(configTask.Key);
-               // }
-            }
-            
-        }
+        
 
         public ObservableCollection<TaskGroup> LoadTimeSheetReport(string fileName, DateTime dateFrom, DateTime dateTo, ModelSettings settings)
         {

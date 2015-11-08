@@ -48,11 +48,6 @@
   <ItemGroup>
     <Compile Include="BaseCommand.cs" />
     <Compile Include="BasePropertyChanged.cs" />
-    <Compile Include="Configuraion\DoneStatusCollection.cs" />
-    <Compile Include="Configuraion\DoneStatusConfigurationElement.cs" />
-    <Compile Include="Configuraion\TaskCollection.cs" />
-    <Compile Include="Configuraion\SpecialTaskConfigurationElement.cs" />
-    <Compile Include="Configuraion\TimeAnalyticConfigurationSection.cs" />
     <Compile Include="DataLoad\DataExport.cs" />
     <Compile Include="DataLoad\DataLoadManager.cs" />
     <Compile Include="DataLoad\FileHelper.cs" />
