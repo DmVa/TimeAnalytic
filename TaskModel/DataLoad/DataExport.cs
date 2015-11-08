@@ -47,6 +47,7 @@ namespace TaskModel.DataLoad
             ws.Cells[row, (int)TaskDataPosition.IsDone].Value = "Is Done";
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToMettings].Value = "Is Metting";
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToDevelopment].Value = "Is Development";
+            ws.Cells[row, (int)TaskDataPosition.IsTaskAssigned].Value = "Is Assigned Task";
             ws.Cells[row, (int)TaskDataPosition.Status].Value = "Status";
             ws.Cells[row, (int)TaskDataPosition.UnderEstimate].Value = "Under Estimate";
             ws.Cells[row, (int)TaskDataPosition.Url].Value = "Url";
@@ -61,6 +62,7 @@ namespace TaskModel.DataLoad
             ws.Cells[row, (int)TaskDataPosition.IsDone].Value = BoolToString(task.IsDone);
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToMettings].Value = BoolToString(task.IsTaskRelatesToMettings);
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToDevelopment].Value = BoolToString(task.IsTaskRelatesToDevelopment);
+            ws.Cells[row, (int)TaskDataPosition.IsTaskAssigned].Value = BoolToString(task.IsTaskAssigned);
             ws.Cells[row, (int)TaskDataPosition.Status].Value = task.Status;
             ws.Cells[row, (int)TaskDataPosition.UnderEstimate].Value = DoubleToString(task.UnderEstimate);
             ws.Cells[row, (int)TaskDataPosition.Url].Value = task.Url;
@@ -179,6 +181,7 @@ namespace TaskModel.DataLoad
         IsDone,
         IsTaskRelatesToMettings,
         IsTaskRelatesToDevelopment,
+        IsTaskAssigned,
         Status,
         UnderEstimate,
         Url

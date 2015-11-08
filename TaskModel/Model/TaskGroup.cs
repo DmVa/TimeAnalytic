@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using TaskModel.Settings;
 
 namespace TaskModel.Model
 {
@@ -13,7 +14,6 @@ namespace TaskModel.Model
         private string _title;
 
         private double _totalEstimationDevelopment;
-        private double _totalLeftOnBeginig; // not used
         private double _totalTimeBooked;
         private double _totalDoneBookedDevelopment;
         private double _totalDoneEstimationDevelopment;
@@ -21,8 +21,8 @@ namespace TaskModel.Model
         private double _totalBookedMeetings;
         private double _totalBookedDevelopment;
 
-        private double _totalSpentManagedByDeveloper; // not used
-        private double _totalSpentNotManagedByDeveloper; // not used
+        private double _totalSpentDevelopmentAssignedToDeveloper; // not used
+        private double _totalSpentDevelopmentNotAssignedToDeveloper; // not used
         private double _rateDoneBookedToBookedDevelopment;
         private double _rateDoneEstimationToDevelopment;
 
@@ -51,12 +51,6 @@ namespace TaskModel.Model
         {
             get { return _totalEstimationDevelopment; }
             set { _totalEstimationDevelopment = value; RaisePropertyChanged("TotalEstimationDevelopment"); }
-        }
-
-        public double TotalLeftOnBeginig
-        {
-            get { return _totalLeftOnBeginig; }
-            set { _totalLeftOnBeginig = value; RaisePropertyChanged("TotalLeftOnBeginig"); }
         }
 
         public double TotalTimeBooked
@@ -88,16 +82,16 @@ namespace TaskModel.Model
             set { _totalBookedDevelopment = value; RaisePropertyChanged("TotalBookedDevelopment"); }
         }
 
-        public double TotalSpentManagedByDeveloper
+        public double TotalSpentDevelopmentAssignedToDeveloper
         {
-            get { return _totalSpentManagedByDeveloper; }
-            set { _totalSpentManagedByDeveloper = value; RaisePropertyChanged("TotalSpentManagedByDeveloper"); }
+            get { return _totalSpentDevelopmentAssignedToDeveloper; }
+            set { _totalSpentDevelopmentAssignedToDeveloper = value; RaisePropertyChanged("TotalSpentDevelopmentAssignedToDeveloper"); }
         }
 
-        public double TotalSpentNotManagedByDeveloper
+        public double TotalSpentDevelopmentNotAssignedToDeveloper
         {
-            get { return _totalSpentNotManagedByDeveloper; }
-            set { _totalSpentNotManagedByDeveloper = value; RaisePropertyChanged("TotalSpentNotManagedByDeveloper"); }
+            get { return _totalSpentDevelopmentNotAssignedToDeveloper; }
+            set { _totalSpentDevelopmentNotAssignedToDeveloper = value; RaisePropertyChanged("TotalSpentDevelopmentNotAssignedToDeveloper"); }
         }
         public double TotalUnderEstimate
         {
@@ -130,13 +124,11 @@ namespace TaskModel.Model
 #endregion
 #region "Methods"
 
-        public void CalculateTotals()
+        public void CalculateTotals(ModelSettings settings)
         {
             CalcItemsTotals();
             ResetTotals();
             _totalEstimationDevelopment = _tasks.Where( x => x.IsTaskRelatesToDevelopment).Sum(x => x.Estimation);
-
-            //_totalLeftOnBeginig = _tasks.Sum(x => x.LeftOnBegining);//not used
 
             _totalTimeBooked = _tasks.Sum(x => x.TimeSpentByDev);
 
@@ -145,9 +137,13 @@ namespace TaskModel.Model
 
             _totalBookedMeetings = _tasks.Where(x => x.IsTaskRelatesToMettings).Sum(x => x.TimeSpentByDev);
             _totalBookedDevelopment =  _tasks.Where(x => x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
-            
-            //_totalSpentManagedByDeveloper = _tasks.Where(x => x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev); //not used
-            //_totalSpentNotManagedByDeveloper = _tasks.Where(x => !x.IsTaskManagedByDeveloper).Sum(x => x.TimeSpentByDev);//not used.
+
+            if (!settings.SourceFileSettings.AssigneeField.AddAssignedToAnotherToDone)
+            {
+                double totalDoneButNotManagedByDeveloper = _tasks.Where(x => !x.IsTaskAssigned && x.IsDone && x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
+
+                _totalDoneBookedDevelopment = _totalDoneBookedDevelopment - totalDoneButNotManagedByDeveloper;
+            }
 
             if (_totalBookedDevelopment > 0)
             {
@@ -173,7 +169,8 @@ namespace TaskModel.Model
                     _rateDoneEstimationToDevelopment = 0;
             }
 
-            _totalUnderEstimate = _tasks.Where(x => x.IsTaskRelatesToDevelopment).Sum(x => x.UnderEstimate); 
+            // calculates only done and development.
+            _totalUnderEstimate = _tasks.Sum(x => x.UnderEstimate); 
             RaisePropertyChanged(string.Empty);
         }
 
@@ -188,14 +185,12 @@ namespace TaskModel.Model
         private void ResetTotals()
         {
               _totalEstimationDevelopment = 0;
-              _totalLeftOnBeginig = 0; //not used
-              _totalTimeBooked = 0;
               _totalDoneBookedDevelopment = 0;
               _totalDoneEstimationDevelopment = 0;
               _totalBookedMeetings = 0;
               _totalBookedDevelopment = 0;
-              _totalSpentManagedByDeveloper = 0; //not used
-              _totalSpentNotManagedByDeveloper = 0; //not used
+              _totalSpentDevelopmentAssignedToDeveloper = 0; //not used
+              _totalSpentDevelopmentNotAssignedToDeveloper = 0; //not used
               _rateDoneBookedToBookedDevelopment = 0;
               _rateDoneEstimationToDevelopment = 0;
               _totalUnderEstimate = 0;

@@ -62,6 +62,7 @@
     <Compile Include="DataLoad\TestHelper.cs" />
     <Compile Include="Model\TaskGroup.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\DoneStatus.cs" />
     <Compile Include="Settings\Fields\AssigneeField.cs" />
     <Compile Include="Settings\Fields\BaseField.cs" />
     <Compile Include="Settings\Fields\EstimationField.cs" />

@@ -27,7 +27,7 @@
     <UpdateUrl>http://54.88.230.163/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -90,10 +90,62 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AssigneeField.xaml.cs">
+      <DependentUpon>AssigneeField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BaseFieldControl.xaml.cs">
+      <DependentUpon>BaseFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DateFieldControl.xaml.cs">
+      <DependentUpon>DateFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DoneStatuses.xaml.cs">
+      <DependentUpon>DoneStatuses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EstimationField.xaml.cs">
+      <DependentUpon>EstimationField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MeetingTasks.xaml.cs">
+      <DependentUpon>MeetingTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UrlFieldControl.xaml.cs">
+      <DependentUpon>UrlFieldControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsListWindow.xaml.cs">
       <DependentUpon>SettingsListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util\GridViewSort.cs" />
+    <Page Include="Controls\AssigneeField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BaseFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DateFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DoneStatuses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EstimationField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MeetingTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UrlFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SettingsListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +186,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="DeployedResources\Settings\AllMeds.setting" />
+    <None Include="DeployedResources\Settings\Pres.setting" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -166,9 +224,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DeployedResources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,9 +5,10 @@ using System.Text;
 
 namespace TaskModel.Settings.Fields
 {
+  
     public class EstimationField : BaseField
     {
-        private bool _isPreferStoryPoints;
+        private bool _isUseStoryPointsFromMainPosition;
         private double  _storyPointCost;
         private int _alternatePosition;
 
@@ -17,10 +18,10 @@ namespace TaskModel.Settings.Fields
             set { _alternatePosition = value; RaisePropertyChanged("AlternatePosition"); }
         }
 
-        public bool IsPreferStoryPoints
+        public bool IsUseStoryPointsFromMainPosition
         {
-            get { return _isPreferStoryPoints; }
-            set { _isPreferStoryPoints = value; RaisePropertyChanged("IsPreferStoryPoints"); }
+            get { return _isUseStoryPointsFromMainPosition; }
+            set { _isUseStoryPointsFromMainPosition = value; RaisePropertyChanged("IsUseStoryPointsFromMainPosition"); }
         }
 
         public double StoryPointCost

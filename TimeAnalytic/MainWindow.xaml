@@ -4,7 +4,8 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:util="clr-namespace:TimeAnalytic.Util"
         Title="Time Analytic" 
-        Height="700" Width="1400" WindowStartupLocation="CenterScreen">
+        Height="700" Width="1400" WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -36,7 +37,10 @@
                 <Grid.ColumnDefinitions>
                </Grid.ColumnDefinitions>
                 <Label  Content="Select Setting:" />
-                <ComboBox Name="ComboSettings" Grid.Row="1" Margin="5" SelectionChanged="ComboSettings_SelectionChanged">
+              
+                    <ComboBox Name="ComboSettings" Grid.Row="1" Margin="5" 
+                          ItemsSource="{Binding Configurations}" SelectedValue="ActiveConfiguration"  IsSynchronizedWithCurrentItem="True"
+                          SelectionChanged="ComboSettings_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -202,6 +206,15 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                       
+                        <GridViewColumn Header="Is Assigned" util:GridViewSort.PropertyName="IsTaskAssigned" Width="90">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsTaskAssigned}" IsEnabled="False" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
 
 
                         <GridViewColumn Header="Status" util:GridViewSort.PropertyName="Status" Width="Auto">
@@ -223,7 +236,13 @@
                         <GridViewColumn Header="Url" util:GridViewSort.PropertyName="Url" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Url}"/>
+                                    <TextBlock>
+                                        <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_RequestNavigate" >
+                                            <TextBlock Text="{Binding Url}" ></TextBlock>
+                                         </Hyperlink>
+                                        
+
+                                    </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

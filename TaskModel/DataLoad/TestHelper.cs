@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using TaskModel.Model;
+using TaskModel.Settings;
 
 namespace TaskModel.DataLoad
 {
@@ -11,17 +12,18 @@ namespace TaskModel.DataLoad
     {
         public static ObservableCollection<TaskGroup> CreateTestData()
         {
+            ModelSettings settings = new ModelSettings();
             TaskGroup group1 =  new TaskGroup();
             group1.Title = "Test 1";
             group1.Tasks.Add(CreateTestTask());
             group1.Tasks.Add(CreateTestTask());
-            group1.CalculateTotals();
+            group1.CalculateTotals(settings);
 
             TaskGroup group2 =  new TaskGroup();
             group2.Title = "Test 2";
             group2.Tasks.Add(CreateTestTask());
             group2.Tasks.Add(CreateTestTask());
-            group2.CalculateTotals();
+            group2.CalculateTotals(settings);
             ObservableCollection<TaskGroup> groups = new ObservableCollection<TaskGroup>();
             groups.Add(group1);
             groups.Add(group2);

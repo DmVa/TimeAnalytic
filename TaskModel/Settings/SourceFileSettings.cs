@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TaskModel.Settings.Fields;
 
 namespace TaskModel.Settings
 {
+   
     public class SourceFileSettings : BasePropertyChanged
     {
         private string _workSheetName;
@@ -20,61 +22,81 @@ namespace TaskModel.Settings
         private int _issueStatusPosition;
         private int _issueOriginalEstimatePosition;
 
-        public string WorkSheetName
+        private BaseField _keyField;
+        private BaseField _titleField;
+        private AssigneeField _assigneeField;
+        private EstimationField _estimationField;
+        private BaseField _statusField;
+        private WorkDateField _dateField;
+        private BaseField _userNameField;
+        private BaseField _timeSpentField;
+        private UrlField _urlField;
+
+        public SourceFileSettings()
         {
-            get { return _workSheetName; }
-            set { _workSheetName = value; RaisePropertyChanged("WorkSheetName"); }
+            Init();
         }
 
-        public string PrefixToUrl
+        private void Init()
         {
-            get { return _prefixToUrl; }
-            set { _prefixToUrl = value; RaisePropertyChanged("PrefixToUrl"); }
+            _keyField = new BaseField() {InternalName="Key", Position=3};
+            _titleField = new BaseField() { InternalName = "Title", Position = 4 };
+            _assigneeField = new AssigneeField() { InternalName = "Assignee", Position = 5 };
+            _estimationField = new EstimationField() { InternalName = "Estimation", Position = 6 };
+            _statusField = new BaseField() { InternalName = "Status", Position = 7 };
+            _dateField = new WorkDateField() { InternalName = "Work Date", Position = 9,  DateFormat="dd.MM.yyyy" };
+            _urlField = new UrlField() { InternalName = "Url", Position = 3, PrefixToValue = "http://" };
+            _userNameField = new BaseField() { InternalName = "User Name", Position = 10};
+            _timeSpentField = new BaseField() { InternalName = "Time Spent", Position = 11 };
         }
-        public string DateFormat
+
+        
+        public BaseField KeyField
         {
-            get { return _dateFormat; }
-            set { _dateFormat = value; RaisePropertyChanged("DateFormat"); }
+            get { return _keyField; }
+            set { _keyField = value; RaisePropertyChanged("KeyField"); }
         }
-        public int KeyPosition
+        public BaseField TitleField
         {
-            get { return _keyPosition; }
-            set { _keyPosition = value; RaisePropertyChanged("KeyPosition"); }
+            get { return _titleField; }
+            set { _titleField = value; RaisePropertyChanged("TitleField"); }
         }
-        public int SummaryPosition
+        public AssigneeField AssigneeField
         {
-            get { return _summaryPosition; }
-            set { _summaryPosition = value; RaisePropertyChanged("SummaryPosition"); }
+            get { return _assigneeField; }
+            set { _assigneeField = value; RaisePropertyChanged("AssigneeField"); }
         }
-        public int HoursPosition
+
+        public EstimationField EstimationField
         {
-            get { return _hoursPosition; }
-            set { _hoursPosition = value; RaisePropertyChanged("HoursPosition"); }
+            get { return _estimationField; }
+            set { _estimationField = value; RaisePropertyChanged("EstimationField"); }
         }
-        public int WorkDatePosition
+        public BaseField StatusField
         {
-            get { return _workDatePosition; }
-            set { _workDatePosition = value; RaisePropertyChanged("WorkDatePosition"); }
+            get { return _statusField; }
+            set { _statusField = value; RaisePropertyChanged("StatusField"); }
         }
-        public int UserKeyPosition
+        public WorkDateField DateField
         {
-            get { return _userKeyPosition; }
-            set { _userKeyPosition = value; RaisePropertyChanged("UserKeyPosition"); }
+            get { return _dateField; }
+            set { _dateField = value; RaisePropertyChanged("DateField"); }
         }
-        public int UserFullNamePosition
+        public BaseField UserNameField
         {
-            get { return _userFullNamePosition; }
-            set { _userFullNamePosition = value; RaisePropertyChanged("UserFullNamePosition"); }
+            get { return _userNameField; }
+            set { _userNameField = value; RaisePropertyChanged("UserNameField"); }
         }
-        public int IssueStatusPosition
+        public BaseField TimeSpentField
         {
-            get { return _issueStatusPosition; }
-            set { _issueStatusPosition = value; RaisePropertyChanged("IssueStatusPosition"); }
+            get { return _timeSpentField; }
+            set { _timeSpentField = value; RaisePropertyChanged("TimeSpentField"); }
         }
-        public int IssueOriginalEstimatePosition
+
+        public UrlField UrlField
         {
-            get { return _issueOriginalEstimatePosition; }
-            set { _issueOriginalEstimatePosition = value; RaisePropertyChanged("IssueOriginalEstimatePosition"); }
+            get { return _urlField; }
+            set { _urlField = value; RaisePropertyChanged("UrlField"); }
         }
     }
 }

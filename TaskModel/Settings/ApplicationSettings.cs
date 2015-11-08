@@ -35,5 +35,13 @@ namespace TaskModel.Settings
             get { return _dateTo; }
             set { _dateTo = value; RaisePropertyChanged("DateTo"); }
         }
+
+        internal static ApplicationSettings CreateDefault()
+        {
+            ApplicationSettings settings = new ApplicationSettings();
+            settings._dateTo = DateTime.Now.Date;
+            settings._dateFrom = settings._dateTo.AddDays(-6);
+            return settings;
+        }
     }
 }

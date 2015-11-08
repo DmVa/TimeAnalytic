@@ -6,13 +6,15 @@ using System.Text;
 
 namespace TaskModel.Settings
 {
+ 
     public class ModelSettings : BasePropertyChanged
     {
-        private ObservableCollection<string> _doneStatuses;
+        private ObservableCollection<DoneStatus> _doneStatuses;
         private ObservableCollection<SpecialTask> _meetingTasks;
         private SourceFileSettings _sourceFileSettings;
         private string _name;
         private string _fileName;
+        private string _excelTabName;
 
         public ModelSettings()
         {
@@ -21,13 +23,13 @@ namespace TaskModel.Settings
 
         private void Init()
         {
-            _doneStatuses = new ObservableCollection<string>();
+            _doneStatuses = new ObservableCollection<DoneStatus>();
             _meetingTasks = new ObservableCollection<SpecialTask>();
             _sourceFileSettings = new SourceFileSettings();
             _name = string.Empty;
         }
 
-        public ObservableCollection<string> DoneStatuses
+        public ObservableCollection<DoneStatus> DoneStatuses
         {
             get {  return _doneStatuses;}
             set {  _doneStatuses = value; RaisePropertyChanged("DoneStatusNames"); }
@@ -50,6 +52,12 @@ namespace TaskModel.Settings
             get { return _name; }
             set { _name = value; RaisePropertyChanged("Name"); }
         }
+        public string ExcelTabName
+        {
+            get { return _excelTabName; }
+            set { _excelTabName = value; RaisePropertyChanged("ExcelTabName"); }
+        }
+
         public string FileName
         {
             get { return _fileName; }

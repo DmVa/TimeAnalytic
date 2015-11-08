@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TaskModel.Settings
 {
+ 
     public class ValueMapping : BasePropertyChanged
     {
         private string _source;

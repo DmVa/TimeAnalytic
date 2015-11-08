@@ -7,15 +7,15 @@ namespace TaskModel.DataLoad
 {
     public class WorkLogDataRow
     {
-        public string IssueKey;
-        public string IssueSummary;
-        public string Hours;
+        public string Key;
+        public string Title;
+        public string Assignee;
+        public string OriginalEstimateHours;
+        public string Status;
+        public string OriginalEstimateStoryPoints;
         public string WorkDateStr;
-        public string Username;
-        public string UserFullName;
-        public string IssueStatus;
-        public string IssueOriginalEstimate;
+        public string UserName;
         public string Url;
-        public DateTime BookDate;
+        public string TimeSpent;
     }
 }

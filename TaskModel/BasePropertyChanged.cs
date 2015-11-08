@@ -6,6 +6,7 @@ using System.Text;
 
 namespace TaskModel
 {
+  
     public class BasePropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

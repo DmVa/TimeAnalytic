@@ -19,7 +19,7 @@ namespace TaskModel.Model
         private bool _isDone;
         private bool _isTaskRelatesToMettings;
         private bool _isTaskRelatesToDevelopment;
-        private bool _isTaskManagedByDeveloper;
+        private bool _isTaskAssigned;
 
         public string Key
         {
@@ -85,15 +85,15 @@ namespace TaskModel.Model
             get { return _isTaskRelatesToDevelopment; }
             set { _isTaskRelatesToDevelopment = value; RaisePropertyChanged("IsTaskRelatesToDevelopment"); }
         }
-        public bool IsTaskManagedByDeveloper
+        public bool IsTaskAssigned
         {
-            get { return _isTaskManagedByDeveloper; }
-            set { _isTaskManagedByDeveloper = value; RaisePropertyChanged("IsTaskManagedByDeveloper"); }
+            get { return _isTaskAssigned; }
+            set { _isTaskAssigned = value; RaisePropertyChanged("IsTaskAssigned"); }
         }
 
         public void CalcCalulatedValues()
         {
-            if (IsDone)
+            if (IsDone && IsTaskRelatesToDevelopment)
             {
                 UnderEstimate = TimeSpentByDev - Estimation;
             }

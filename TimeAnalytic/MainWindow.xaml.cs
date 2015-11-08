@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -74,11 +75,11 @@ namespace TimeAnalytic
         private void ButtonManageSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsListWindow settingsListWindow = new SettingsListWindow();
-            settingsListWindow.DataContext = _mainViewModel.Cofigurations;
+            settingsListWindow.DataContext = _mainViewModel.Configurations;
             settingsListWindow.Owner = this;
             settingsListWindow.ShowDialog();
             
-            if (!_mainViewModel.Cofigurations.Contains(_mainViewModel.ActiveConfigutaion))
+            if (!_mainViewModel.Configurations.Contains(_mainViewModel.ActiveConfigutaion))
             {
                 _mainViewModel.ActiveConfigutaion = null;
             }
@@ -88,6 +89,25 @@ namespace TimeAnalytic
         {
             ModelSettings selected = ComboSettings.SelectedItem as ModelSettings;
             _mainViewModel.ActiveConfigutaion = selected;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                _mainViewModel.SaveApplicationConfiguration();
+                
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }

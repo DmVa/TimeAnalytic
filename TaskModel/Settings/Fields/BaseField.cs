@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TaskModel.Settings.Fields
 {
+   
     public class BaseField : BasePropertyChanged
     {
         private string _internalName;

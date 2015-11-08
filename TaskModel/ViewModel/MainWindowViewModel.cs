@@ -17,23 +17,35 @@ namespace TaskModel.ViewModel
         private ObservableCollection<ModelSettings> _configurations;
         private ModelSettings _activeConfiguration;
 
-        private DateTime _dateFrom;
-        private DateTime _dateTo;
-        private string _dataFile;
+       
         private FileHelper _fileHelper;
         private DataLoadManager _dataLoader;
 
         public MainWindowViewModel()
         {
-            _applicationSettings = new ApplicationSettings();
-            _configurations = new ObservableCollection<ModelSettings>();
             _fileHelper = new FileHelper();
             _dataLoader = new DataLoadManager();
-            _dataFile = _fileHelper.GetLastModifiedFile();
-
-            _dateTo = DateTime.Now.Date;
-            _dateFrom = _dateTo.AddDays(-7);
+            Init();
             InitTasksGroups();
+        }
+
+        private void Init()
+        {
+            _fileHelper.MoveDeployedRecources();
+            _applicationSettings = _fileHelper.LoadAppSettings();
+            if (_applicationSettings == null)
+                _applicationSettings = ApplicationSettings.CreateDefault();
+
+            _configurations = new ObservableCollection<ModelSettings>();
+            IEnumerable<ModelSettings> loaded = _fileHelper.LoadAllSettings();
+            foreach (var setting in loaded)
+            {
+                _configurations.Add(setting);
+            }
+
+            ModelSettings active = loaded.FirstOrDefault(x=>x.FileName == _applicationSettings.ConfigurationFile);
+            if (active != null)
+                ActiveConfigutaion = active;
         }
 
 #region "Public properties"
@@ -50,10 +62,10 @@ namespace TaskModel.ViewModel
         }
 
 
-        public ObservableCollection<ModelSettings> Cofigurations
+        public ObservableCollection<ModelSettings> Configurations
         {
             get { return _configurations; }
-            set { _configurations = value; RaisePropertyChanged("Cofigurations"); }
+            set { _configurations = value; RaisePropertyChanged("Configurations"); }
         }
 
         public string DataFile
@@ -78,12 +90,12 @@ namespace TaskModel.ViewModel
 
         public void LoadData()
         {
-            TasksGroups = _dataLoader.LoadTimeSheetReport(_dataFile, _dateFrom, _dateTo); 
+            TasksGroups = _dataLoader.LoadTimeSheetReport(_applicationSettings.DataFile, _applicationSettings.DateFrom, _applicationSettings.DateTo, _activeConfiguration); 
         }
 
         private void InitTasksGroups()
         {
-            if (!string.IsNullOrEmpty(_dataFile))
+            if (!string.IsNullOrEmpty(_applicationSettings.DataFile) && _activeConfiguration != null)
             {
                 try
                 {
@@ -113,6 +125,14 @@ namespace TaskModel.ViewModel
             }
             return error;
             
+        }
+
+        public void SaveApplicationConfiguration()
+        {
+            if (_activeConfiguration != null)
+                _applicationSettings.ConfigurationFile = _activeConfiguration.FileName;
+
+            _fileHelper.SaveAppSettings(_applicationSettings);
         }
     }
 }

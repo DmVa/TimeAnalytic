@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TaskModel.Settings.Fields
 {
+  
     public class WorkDateField : BaseField
     {
         private string _dateFormat;
