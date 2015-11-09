@@ -25,7 +25,7 @@ namespace TaskModel.DataLoad
 
         public void MoveDeployedRecources()
         {
-            string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string location = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? "";
             string resorcesFolder = Path.Combine(location, "DeployedResources");
             string settingsFolder = Path.Combine(resorcesFolder, "Settings");
 

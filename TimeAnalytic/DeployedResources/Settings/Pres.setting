@@ -44,7 +44,11 @@
           <Target>Vladimir Knyazkov</Target>
         </ValueMapping>
         <ValueMapping>
-          <Source>sarah(sarah)</Source>
+          <Source>sergey(sergey)</Source>
+          <Target>Sergey Obolenskiy</Target>
+        </ValueMapping>
+        <ValueMapping>
+          <Source>mlazorenko(mlazorenko)</Source>
           <Target>Max Lazorenko</Target>
         </ValueMapping>
       </NameMapping>
@@ -64,7 +68,7 @@
     <DateField>
       <Position>9</Position>
       <InternalName>Work Date</InternalName>
-      <DateFormat>dd.MM.yyyy</DateFormat>
+      <DateFormat>MM/dd/yyyy</DateFormat>
     </DateField>
     <UserNameField>
       <Position>10</Position>
@@ -81,5 +85,5 @@
     </UrlField>
   </SourceFileSettings>
   <Name>Pres</Name>
-  <FileName>C:\Users\Dmva\Documents\TimeAnalytic\Settings\Data File Settings.setting</FileName>
+  <FileName>C:\Users\developer-2\Documents\TimeAnalytic\Settings\Pres.setting</FileName>
 </ModelSettings>

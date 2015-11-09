@@ -14,6 +14,7 @@
   <MeetingTasks>
     <SpecialTask>
       <Key>AL-677</Key>
+      <Description />
     </SpecialTask>
     <SpecialTask>
       <Key>AL-679</Key>
@@ -67,16 +68,16 @@
       <InternalName>Status</InternalName>
     </StatusField>
     <DateField>
-      <Position>9</Position>
+      <Position>8</Position>
       <InternalName>Work Date</InternalName>
-      <DateFormat>dd.MM.yyyy</DateFormat>
+      <DateFormat>MM/dd/yyyy</DateFormat>
     </DateField>
     <UserNameField>
-      <Position>10</Position>
+      <Position>9</Position>
       <InternalName>User Name</InternalName>
     </UserNameField>
     <TimeSpentField>
-      <Position>11</Position>
+      <Position>10</Position>
       <InternalName>Time Spent</InternalName>
     </TimeSpentField>
     <UrlField>
@@ -86,5 +87,5 @@
     </UrlField>
   </SourceFileSettings>
   <Name>AllMeds</Name>
-  <FileName>C:\Users\Dmva\Documents\TimeAnalytic\Settings\AllMeds.setting</FileName>
+  <FileName>C:\Users\developer-2\Documents\TimeAnalytic\Settings\AllMeds.setting</FileName>
 </ModelSettings>

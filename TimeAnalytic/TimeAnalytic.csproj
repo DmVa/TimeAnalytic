@@ -186,8 +186,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="DeployedResources\Settings\AllMeds.setting" />
-    <None Include="DeployedResources\Settings\Pres.setting" />
+    <Content Include="DeployedResources\Settings\AllMeds.setting">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DeployedResources\Settings\Pres.setting">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
