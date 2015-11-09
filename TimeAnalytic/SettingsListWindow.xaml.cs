@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TaskModel.DataLoad;
 using TaskModel.Settings;
+using TaskModel.ViewModel;
 
 namespace TimeAnalytic
 {
@@ -26,8 +27,17 @@ namespace TimeAnalytic
         public SettingsListWindow()
         {
             _fileHelper = new FileHelper();
+            this.Loaded += SettingsListWindow_Loaded;
             InitializeComponent();
         }
+
+        void SettingsListWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Loaded -= SettingsListWindow_Loaded;
+            Selected = InitalSelected;
+        }
+
+        public MainWindowViewModel MainViewModel { get; set; }
 
         public Collection<ModelSettings> Items
         {
@@ -52,12 +62,24 @@ namespace TimeAnalytic
 
             SettingsWindow window = new SettingsWindow();
             var selectedItem = Selected;
+            ModelSettings settingsCopy = Selected.MakeCopy();
+
             window.DataContext = selectedItem;
             window.Owner = this;
             window.ShowDialog();
             if (window.DialogResult == true)
             {
                 _fileHelper.SaveSetting(selectedItem);
+            }
+            else
+            {
+                bool isActiveConfig = MainViewModel.ActiveConfigutaion == selectedItem;
+                int currentIdx = Items.IndexOf(selectedItem);
+                Items[currentIdx] = settingsCopy;
+                Selected = settingsCopy;
+
+                if (isActiveConfig)
+                    MainViewModel.ActiveConfigutaion = settingsCopy;
             }
 
         }
@@ -89,6 +111,9 @@ namespace TimeAnalytic
             {
                 var selectedItem = Selected;
                 _fileHelper.DeleteSetting(selectedItem);
+                if (MainViewModel.ActiveConfigutaion == selectedItem)
+                    MainViewModel.ActiveConfigutaion = null;
+
                 Items.Remove(selectedItem);
                 Selected = null;
             }
@@ -98,5 +123,7 @@ namespace TimeAnalytic
         {
             DialogResult = false;
         }
+
+        public ModelSettings InitalSelected { get; set; }
     }
 }

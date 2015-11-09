@@ -75,7 +75,9 @@ namespace TimeAnalytic
         private void ButtonManageSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsListWindow settingsListWindow = new SettingsListWindow();
+            settingsListWindow.MainViewModel = _mainViewModel;
             settingsListWindow.DataContext = _mainViewModel.Configurations;
+            settingsListWindow.InitalSelected = _mainViewModel.ActiveConfigutaion;
             settingsListWindow.Owner = this;
             settingsListWindow.ShowDialog();
             

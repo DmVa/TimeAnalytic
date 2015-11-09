@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace TaskModel.Settings
 {
@@ -62,6 +64,18 @@ namespace TaskModel.Settings
         {
             get { return _fileName; }
             set { _fileName = value; RaisePropertyChanged("FileName"); }
+        }
+
+        public ModelSettings MakeCopy()
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(ModelSettings));
+            var stream = new MemoryStream();
+            using (stream)
+            {
+                ser.Serialize(stream, this);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (ModelSettings)ser.Deserialize(stream);
+            }
         }
     }
 }
