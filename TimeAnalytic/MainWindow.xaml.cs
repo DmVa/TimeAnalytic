@@ -32,6 +32,13 @@ namespace TimeAnalytic
             InitializeComponent();
             _fileHelper = new FileHelper();
             this.DataContext = _mainViewModel;
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Loaded -= MainWindow_Loaded;
+            ComboSettings.SelectedItem = _mainViewModel.ActiveConfigutaion;
         }
 
         private void ButtonLoad_Click(object sender, RoutedEventArgs e)
@@ -89,6 +96,10 @@ namespace TimeAnalytic
 
         private void ComboSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // ugly workaround, combobox at first initialization set default first element.
+            if (!this.IsLoaded)
+                return;
+
             ModelSettings selected = ComboSettings.SelectedItem as ModelSettings;
             _mainViewModel.ActiveConfigutaion = selected;
         }
