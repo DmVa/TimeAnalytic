@@ -14,8 +14,8 @@
         <StackPanel >
             <controls:BaseFieldControl  HorizontalAlignment="Left" />
             <StackPanel Orientation="Horizontal">
-                <Label VerticalAlignment="Center" Grid.Row="1">Date Recognize Pattern</Label>
-                <TextBox Text="{Binding Path=DateFormat}" Margin="2" Width="62" VerticalContentAlignment="Center"></TextBox>
+                <Label VerticalAlignment="Center" Grid.Row="1">Date  Pattern</Label>
+                <TextBox Text="{Binding Path=DateFormat}" Margin="28,2,2,2" Width="88" VerticalContentAlignment="Center"></TextBox>
             </StackPanel>
         </StackPanel>
 

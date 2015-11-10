@@ -141,8 +141,10 @@ namespace TaskModel.Model
             if (!settings.SourceFileSettings.AssigneeField.AddAssignedToAnotherToDone)
             {
                 double totalDoneButNotManagedByDeveloper = _tasks.Where(x => !x.IsTaskAssigned && x.IsDone && x.IsTaskRelatesToDevelopment).Sum(x => x.TimeSpentByDev);
-
+                double totalEstimationDoneButNotManagedByDeveloper = _tasks.Where(x => !x.IsTaskAssigned && x.IsDone && x.IsTaskRelatesToDevelopment).Sum(x => x.Estimation);
                 _totalDoneBookedDevelopment = _totalDoneBookedDevelopment - totalDoneButNotManagedByDeveloper;
+                _totalDoneEstimationDevelopment = _totalDoneEstimationDevelopment -
+                                                  totalEstimationDoneButNotManagedByDeveloper;
             }
 
             if (_totalBookedDevelopment > 0)

@@ -17,6 +17,6 @@
         <Label VerticalAlignment="Center">Filed Name</Label>
         <TextBlock  Grid.Column="1" FontWeight="Bold" Text="{Binding Path=InternalName}" VerticalAlignment="Center"></TextBlock>
         <Label VerticalAlignment="Center" Grid.Row="1">Position in file:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Position}" Margin="2" VerticalContentAlignment="Center"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Position}" Margin="2,2,8,2" VerticalContentAlignment="Center"></TextBox>
     </Grid>
 </UserControl>

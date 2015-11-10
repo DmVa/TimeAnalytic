@@ -16,8 +16,12 @@
             <controls:BaseFieldControl  HorizontalAlignment="Left" />
             <CheckBox  Margin="2" IsChecked="{Binding Path=IsUseStoryPointsFromMainPosition}" Content="Is Use story points in main postion"/>
             <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center" Grid.Row="1">1 Story point in hours:</Label>
+                <TextBox Text="{Binding Path=StoryPointCost}" Margin="30,2,2,2" Width="40" VerticalContentAlignment="Center"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Label VerticalAlignment="Center" Grid.Row="1">Alternate Position in file:</Label>
-                <TextBox Text="{Binding Path=AlternatePosition}" Margin="2" Width="40" VerticalContentAlignment="Center"></TextBox>
+                <TextBox Text="{Binding Path=AlternatePosition}" Margin="18,2,2,2" Width="40" VerticalContentAlignment="Center"></TextBox>
             </StackPanel>
         </StackPanel>
         

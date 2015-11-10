@@ -59,7 +59,7 @@
       <InternalName>Estimation</InternalName>
       <AlternatePosition>6</AlternatePosition>
       <IsUseStoryPointsFromMainPosition>true</IsUseStoryPointsFromMainPosition>
-      <StoryPointCost>0</StoryPointCost>
+      <StoryPointCost>4</StoryPointCost>
     </EstimationField>
     <StatusField>
       <Position>7</Position>

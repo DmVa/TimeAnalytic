@@ -42,7 +42,7 @@ namespace TaskModel.Settings
             _keyField = new BaseField() {InternalName="Key", Position=3};
             _titleField = new BaseField() { InternalName = "Title", Position = 4 };
             _assigneeField = new AssigneeField() { InternalName = "Assignee", Position = 5 };
-            _estimationField = new EstimationField() { InternalName = "Estimation", Position = 6 };
+            _estimationField = new EstimationField() { InternalName = "Estimation", Position = 6, StoryPointCost = 4};
             _statusField = new BaseField() { InternalName = "Status", Position = 7 };
             _dateField = new WorkDateField() { InternalName = "Work Date", Position = 9,  DateFormat="dd.MM.yyyy" };
             _urlField = new UrlField() { InternalName = "Url", Position = 3, PrefixToValue = "http://" };

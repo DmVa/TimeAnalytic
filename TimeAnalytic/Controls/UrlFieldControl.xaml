@@ -15,7 +15,7 @@
             <controls:BaseFieldControl  HorizontalAlignment="Left" />
             <StackPanel Orientation="Horizontal">
                 <Label VerticalAlignment="Center" Grid.Row="1">Add as prefix:</Label>
-                <TextBox Text="{Binding Path=PrefixToValue}" Margin="2" Width="114" VerticalContentAlignment="Center"></TextBox>
+                <TextBox Text="{Binding Path=PrefixToValue}" Margin="2" Width="108" VerticalContentAlignment="Center"></TextBox>
             </StackPanel>
         </StackPanel>
     </Grid>
