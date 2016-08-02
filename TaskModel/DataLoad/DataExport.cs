@@ -10,6 +10,7 @@ namespace TaskModel.DataLoad
 {
     public class DataExport
     {
+        private const string DOUBLE_FORMAT= "#0.00";
         public void Export(string fileName, DateTime dateFrom, DateTime dateTo, IEnumerable<TaskGroup> groups)
         {
             SpreadsheetInfo.SetLicense("E5M8-KYCM-HFC2-WRTR");
@@ -38,6 +39,7 @@ namespace TaskModel.DataLoad
             workbook.Save(fileName);
         }
 
+
         private void WriteTasksHeader(ExcelWorksheet ws, int row)
         {
             ws.Cells[row, (int)TaskDataPosition.Key].Value = "Key";
@@ -57,14 +59,22 @@ namespace TaskModel.DataLoad
         {
             ws.Cells[row, (int)TaskDataPosition.Key].Value = task.KeyName;
             ws.Cells[row, (int)TaskDataPosition.Title].Value = task.Title;
-            ws.Cells[row, (int)TaskDataPosition.Estimation].Value = DoubleToString(task.Estimation);
-            ws.Cells[row, (int)TaskDataPosition.TimeSpentByDev].Value = DoubleToString(task.TimeSpentByDev);
+
+            ws.Cells[row, (int)TaskDataPosition.Estimation].Value = PrepareDouble(task.Estimation);
+            ws.Cells[row, (int)TaskDataPosition.Estimation].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskDataPosition.TimeSpentByDev].Value = PrepareDouble(task.TimeSpentByDev);
+            ws.Cells[row, (int)TaskDataPosition.TimeSpentByDev].Style.NumberFormat = DOUBLE_FORMAT;
+
             ws.Cells[row, (int)TaskDataPosition.IsDone].Value = BoolToString(task.IsDone);
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToMettings].Value = BoolToString(task.IsTaskRelatesToMettings);
             ws.Cells[row, (int)TaskDataPosition.IsTaskRelatesToDevelopment].Value = BoolToString(task.IsTaskRelatesToDevelopment);
             ws.Cells[row, (int)TaskDataPosition.IsTaskAssigned].Value = BoolToString(task.IsTaskAssigned);
             ws.Cells[row, (int)TaskDataPosition.Status].Value = task.Status;
-            ws.Cells[row, (int)TaskDataPosition.UnderEstimate].Value = DoubleToString(task.UnderEstimate);
+
+            ws.Cells[row, (int)TaskDataPosition.UnderEstimate].Value = PrepareDouble(task.UnderEstimate);
+            ws.Cells[row, (int)TaskDataPosition.UnderEstimate].Style.NumberFormat = DOUBLE_FORMAT;
+
             ws.Cells[row, (int)TaskDataPosition.Url].Value = task.Url;
         }
 
@@ -73,12 +83,14 @@ namespace TaskModel.DataLoad
             return value ? "True" : "False";
         }
 
-        private string DoubleToString(double value)
+        private double PrepareDouble(double value)
         {
             double x = Math.Truncate(value * 100) / 100;
-            string s = string.Format("{0:N2}", x);
-            return s;
+            //string s = string.Format("{0:N2}", x);
+            //return s;
+            return x;
         }
+
         private string DateToString(DateTime date)
         {
 
@@ -102,14 +114,30 @@ namespace TaskModel.DataLoad
         private void WriteGroupData(ExcelWorksheet ws, TaskGroup group, int row)
         {
             ws.Cells[row, (int)TaskGroupDataPosition.Title].Value = group.Title;
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalEstimationDevelopment].Value = DoubleToString(group.TotalEstimationDevelopment);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneEstimationDevelopment].Value = DoubleToString(group.TotalDoneEstimationDevelopment);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneBookedDevelopment].Value = DoubleToString(group.TotalDoneBookedDevelopment);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalTimeBooked].Value = DoubleToString(group.TotalTimeBooked);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedDevelopment].Value = DoubleToString(group.TotalBookedDevelopment);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedMeetings].Value = DoubleToString(group.TotalBookedMeetings);
-            ws.Cells[row, (int)TaskGroupDataPosition.TotalUnderEstimate].Value = DoubleToString(group.TotalUnderEstimate);
-            ws.Cells[row, (int)TaskGroupDataPosition.RateDoneBookedToBookedDevelopment].Value = DoubleToString(group.RateDoneBookedToBookedDevelopment);
+            
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalEstimationDevelopment].Value = PrepareDouble(group.TotalEstimationDevelopment);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalEstimationDevelopment].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneEstimationDevelopment].Value = PrepareDouble(group.TotalDoneEstimationDevelopment);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneEstimationDevelopment].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneBookedDevelopment].Value = PrepareDouble(group.TotalDoneBookedDevelopment);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalDoneBookedDevelopment].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalTimeBooked].Value = PrepareDouble(group.TotalTimeBooked);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalTimeBooked].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedDevelopment].Value = PrepareDouble(group.TotalBookedDevelopment);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedDevelopment].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedMeetings].Value = PrepareDouble(group.TotalBookedMeetings);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalBookedMeetings].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalUnderEstimate].Value = PrepareDouble(group.TotalUnderEstimate);
+            ws.Cells[row, (int)TaskGroupDataPosition.TotalUnderEstimate].Style.NumberFormat = DOUBLE_FORMAT;
+
+            ws.Cells[row, (int)TaskGroupDataPosition.RateDoneBookedToBookedDevelopment].Value = PrepareDouble(group.RateDoneBookedToBookedDevelopment);
+            ws.Cells[row, (int)TaskGroupDataPosition.RateDoneBookedToBookedDevelopment].Style.NumberFormat = DOUBLE_FORMAT;
         }
 
 

@@ -11,6 +11,7 @@ namespace TaskModel.ViewModel
 {
     public class MainWindowViewModel : BasePropertyChanged
     {
+        private string _versionString;
         private ApplicationSettings _applicationSettings;
 
         private ObservableCollection<TaskGroup> _tasksGroups;
@@ -31,6 +32,7 @@ namespace TaskModel.ViewModel
 
         private void Init()
         {
+            CalcVersionString();
             _fileHelper.MoveDeployedRecources();
             _applicationSettings = _fileHelper.LoadAppSettings();
             if (_applicationSettings == null)
@@ -48,7 +50,14 @@ namespace TaskModel.ViewModel
                 ActiveConfigutaion = active;
         }
 
-#region "Public properties"
+        private void CalcVersionString()
+        {
+           Version theVersion = AppDomain.CurrentDomain.DomainManager.EntryAssembly.GetName().Version;
+            _versionString = string.Format("ver: {0}.{1}.{2}.{3}", theVersion.Major, theVersion.Minor,
+                theVersion.Build, theVersion.Revision);
+        }
+
+        #region "Public properties"
         public ObservableCollection<TaskGroup> TasksGroups
         {
             get { return _tasksGroups; }
@@ -84,6 +93,12 @@ namespace TaskModel.ViewModel
         {
             get { return _applicationSettings.DateTo; }
             set { _applicationSettings.DateTo = value; RaisePropertyChanged("DateTo"); }
+        }
+
+        public string VersionString
+        {
+            get { return _versionString; }
+            set { _versionString = value; RaisePropertyChanged("VersionString"); }
         }
 
 #endregion

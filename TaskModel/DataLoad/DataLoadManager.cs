@@ -70,6 +70,11 @@ namespace TaskModel.DataLoad
         {
             string pattern = dateFieldDefinition.DateFormat;
             string toParse = dateString;
+            if (string.IsNullOrEmpty(dateString))
+            {
+                throw new ApplicationException("date string is empty, check settings");
+            }
+
             if (toParse.Length > pattern.Length)
                 toParse = toParse.Substring(0, pattern.Length);
 
@@ -178,7 +183,12 @@ namespace TaskModel.DataLoad
             if (string.IsNullOrEmpty(value))
                 return 0;
             string strValue = value.Replace(",", ".");
-            return double.Parse(strValue, CultureInfo.InvariantCulture);
+            double dblValue;
+            if (!double.TryParse(strValue, NumberStyles.Number,  CultureInfo.InvariantCulture, out dblValue))
+            {
+                throw  new ApplicationException(string.Format("cannot parse {0} as double", strValue));
+            }
+            return dblValue;
         }
 
         private void CalcTotals(ObservableCollection<TaskGroup> groups, ModelSettings settings)

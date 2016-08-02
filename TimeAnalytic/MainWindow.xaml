@@ -57,6 +57,7 @@
             <Button x:Name="buttonExportData" Content="Export Data" Margin="5"  Height="30"  Click="ButtonExport_Click" />
             
             <Button x:Name="buttonManageSettings" Content="Settings" Margin="5"  Height="30"  Click="ButtonManageSettings_Click" />
+            <Label x:Name="labelVersion" Content="{Binding VersionString}" Margin="5" HorizontalContentAlignment="Left" ></Label>
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
