@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using TaskModel.DataLoad;
 using TaskModel.Model;
@@ -52,9 +54,17 @@ namespace TaskModel.ViewModel
 
         private void CalcVersionString()
         {
-           Version theVersion = AppDomain.CurrentDomain.DomainManager.EntryAssembly.GetName().Version;
-            _versionString = string.Format("ver: {0}.{1}.{2}.{3}", theVersion.Major, theVersion.Minor,
-                theVersion.Build, theVersion.Revision);
+            var assembly = Assembly.GetEntryAssembly();
+            Version theVersion = assembly?.GetName()?.Version;
+            if (theVersion != null)
+            {
+                _versionString = string.Format("ver: {0}.{1}.{2}.{3}", theVersion.Major, theVersion.Minor,
+                    theVersion.Build, theVersion.Revision);
+            }
+            else
+            {
+                _versionString = "ver: undefined";
+            }
         }
 
         #region "Public properties"

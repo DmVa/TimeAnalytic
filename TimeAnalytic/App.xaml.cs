@@ -21,9 +21,10 @@ namespace TimeAnalytic
                        System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Exception ex = e.Exception;
-            string errorMessage = string.Format("Error: {0}", ex == null ? "none" : ex.Message);
+            string errorMessage = string.Format("Error: {0}", ex == null ? "none" : ex.ToString());
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
+
         }
     }
 }
